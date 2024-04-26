@@ -62,12 +62,8 @@ void SListPushBack(SListNode** ppNode, TYPE val)//尾插入
 
 void SListPuphBack(SListNode** ppNode) //尾删除
 {
-	if(*ppNode == NULL)
-	{
-		printf("删除失败链表为空");
-		return ;
-	}
-	else if((*ppNode)->next == NULL)
+	SListJudge(*ppNode);
+	if((*ppNode)->next == NULL)
 	{
 		free(*ppNode);
 		*ppNode = NULL;
@@ -86,8 +82,73 @@ void SListPuphBack(SListNode** ppNode) //尾删除
 	}
 }
 
-void SListPushFront(SListNode** ppNode, TYPE val);//头插入
-void SListPuphFront(SListNode** ppNode); //头删除
+void SListPushFront(SListNode** ppNode, TYPE val)//头插入
+{
+	SListNode* newNode = (SListNode*)malloc(sizeof(SListNode));
+	newNode->next = *ppNode;
+	newNode->data = val;
+	*ppNode = newNode;
+}
+void SListPuphFront(SListNode** ppNode)//头删除
+{
+	SListJudge(*ppNode);
+	SListNode* headNode = *ppNode;
+	*ppNode = headNode->next;
+	free(headNode);
+	headNode = NULL;
+}
 
-void SListPushInsert(SListNode** ppNode, TYPE val, int place);//任意位置插入
-void SListPupErase(SListNode** ppNode, int place);//任意位置删除
+void SListPushInsert(SListNode** ppNode, TYPE val, int place)//任意位置插入
+{
+	if(*ppNode == NULL)
+	{
+		SListPushFront(ppNode, val);
+		return ;
+	}
+	SListNode* posNode = SListCheck(*ppNode, place);
+	if(posNode == NULL)
+	{
+		return ;
+	}
+	SListNode* newNode = (SListNode*)malloc(sizeof(SListNode));
+	newNode->next = posNode->next;	
+	posNode->next = newNode;
+	newNode->data = val;
+}
+
+void SListPupErase(SListNode** ppNode, int place)//任意位置删除
+{
+	SListNode* curNode = SListCheck(*ppNode, place);
+	if(curNode == NULL || curNode->next == NULL)
+	{
+		return ;
+	}
+	SListNode* desNode = curNode->next;
+	curNode->next = desNode->next;
+	free(desNode);
+	desNode = NULL;
+}
+
+SListNode* SListinverse(SListNode** ppNode)//逆序链表
+{
+	if(*ppNode == NULL || (*ppNode)->next == NULL)
+	{
+		return *ppNode;
+	}
+	SListNode* p1 = NULL;
+	SListNode* p2 = *ppNode;
+	SListNode* p3 = (*ppNode)->next;
+	
+	while(p2)
+	{
+		p2->next = p1;
+		p1 = p2;		
+		p2 = p3;
+		if(p3)
+		{
+			p3 = p3->next;
+		}
+		
+	}
+	return p1;
+}

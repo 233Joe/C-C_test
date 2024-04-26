@@ -23,3 +23,4 @@ void SListPuphFront(SListNode** ppNode); //头删除
 void SListPushInsert(SListNode** ppNode, TYPE val, int place);//任意位置插入
 void SListPupErase(SListNode** ppNode, int place);//任意位置删除
 
+SListNode* SListinverse(SListNode** ppNode);//逆序链表;

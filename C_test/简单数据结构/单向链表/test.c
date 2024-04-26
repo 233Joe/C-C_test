@@ -14,5 +14,16 @@ int main()
 	SListPrint(head);
 	SListPrint(SListCheck(head, 2));
 
+	SListPushFront(&head, 100);
+	SListPrint(head);
+	SListPuphFront(&head);
+	SListPrint(head);
+	
+	SListPushInsert(&head, 11, 2);
+	SListPrint(head);
+	SListPupErase(&head, 2);
+	SListPrint(head);
+	
+	SListPrint(SListinverse(&head));
 	return 0;
 }
