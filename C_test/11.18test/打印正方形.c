@@ -1,0 +1,17 @@
+#include<stdio.h>
+int main(){
+	int i = 0;
+	int x = 0;
+	int j = 0;
+	
+	while(scanf("%d", &x)!=EOF){
+		for(i=0; i<x; i++){
+			for(j=0; j<=i; j++){
+				printf("* ");
+			}
+			printf("\n");
+		}
+		
+	}
+	return 0;
+}
