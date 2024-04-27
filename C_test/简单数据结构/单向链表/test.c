@@ -5,7 +5,7 @@ int main()
 {
 	SListNode* head = NULL;
 	int i = 0;
-	for(i=1; i<=5; i++)
+	for(i=1; i<=10; i++)
 	{
 		SListPushBack(&head, i);
 	}
@@ -24,6 +24,9 @@ int main()
 	SListPupErase(&head, 2);
 	SListPrint(head);
 	
-	SListPrint(SListinverse(&head));
+	SListPrint(SListInverse1(&head));
+	SListPrint(head);
+	SListPrint(SListInverse2(&head));
+	SListPrint(head);
 	return 0;
 }

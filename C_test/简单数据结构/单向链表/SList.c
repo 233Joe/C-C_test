@@ -129,7 +129,7 @@ void SListPupErase(SListNode** ppNode, int place)//任意位置删除
 	desNode = NULL;
 }
 
-SListNode* SListinverse(SListNode** ppNode)//逆序链表
+SListNode* SListInverse1(SListNode** ppNode)//逆序链表 方法一
 {
 	if(*ppNode == NULL || (*ppNode)->next == NULL)
 	{
@@ -150,5 +150,36 @@ SListNode* SListinverse(SListNode** ppNode)//逆序链表
 		}
 		
 	}
+	*ppNode = p1;
 	return p1;
 }
+
+// p->4 3 2 1->NULL
+SListNode* SListInverse2(SListNode** ppNode)//逆序链表 方法二:头插法
+{//方法一新建链表
+//	if(*ppNode == NULL || (*ppNode)->next == NULL)
+//	{
+//		return *ppNode;
+//	}
+//	SListNode* cur1 = *ppNode;
+//	static SListNode* newhead = NULL;
+//	while(cur1)
+//	{
+//		SListPushFront(&newhead, cur1->data);
+//		cur1 = cur1->next;
+//	}
+//	return newhead;
+//方法二原链表
+	SListNode* cur = (*ppNode)->next;
+	(*ppNode)->next = NULL;
+	while(cur)
+	{
+		SListNode* next = cur->next;
+		cur->next = *ppNode;
+		*ppNode = cur;
+		cur = next;
+	}
+	return *ppNode;
+}
+
+
