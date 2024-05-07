@@ -24,12 +24,12 @@
  */
 int main()
 {
-	int arr[] = {1, 10, 3, 5, 1, 3, 5, 1, 3, 5};
+	int arr[] = {121, 121, 3, 5, 121, 3, 5, 2, 3, 5};
 	int sz = sizeof(arr)/sizeof(arr[0]);
 	
 	int ans = 0;
 	int i = 0;
-	for(i=0;i<32;i++)
+	for(i=0;i<32;i++)//11	101
 	{
 		int pos = 0;
 		int j = 0;
@@ -37,6 +37,7 @@ int main()
 		{
 			pos += (arr[j] >> i) & 1;
 		}
+		printf("%d  %d\n", pos, i);
 		if(pos % 3)
 		{
 			ans |= (1u << i);
