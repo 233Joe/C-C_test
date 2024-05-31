@@ -1,0 +1,194 @@
+进制的表示方法
+	short		int		long
+八进制	%ho		%o		%lo
+十进制	%hd		%d		%ld
+十六进制	%hx 或者 %hX	%x 或者 %X	%lx 或者 %lX
+--------------------------------------------------------------------------------
+ASCII值
+a-z	97-122
+A-Z	65-90
+0-9	48-57
+---------------------------------------------------------------------------
+用法
+预定义符号
+__FILE__	输出类型%s   进行编译的源文件地址
+__LINE__	输出类型%d   文件当前的行号
+__DATE__	输出类型%s   文件被编译的日期
+__TIME__	输出类型%s   文件被编译的时间
+__STDC__	输出类型%d   如果编译器是遵循ANSI C, 其值为1
+
+
+字符分类函数：
+{
+iscntrl('');		任何控制字符
+isspace('');	空白字符:空格，换页\f，换行n'，回车r，制表符t'或者垂直制表符v
+isdigit('');		十进制数字0-9
+isxdigit('');	十六进制数字，包括所有十进制数字，小写字母a~f，大写字母A~F
+islower('');	小写字母a-z
+isupper('');	大写字母A-Z
+isalpha('');	字母a-z或A-Z
+isalnum('');	字母或者数字a-z，A-Z，0-9
+ispunct('');	标点符号，任何不属于数字或者字母的图形字符 (可打印)
+isgraph('');	任何图行字符
+isprint('');		任何可打印字符，包括图形字符和空白字符
+}
+字符转换：
+{
+tolower('');	转小写字符
+toupper('');	转大写字符
+}
+void*;	没有类型的指针，谁都可以赋值，不能++或--也无法检引用，使用需要强转
+size_t	无符号整数。
+
+
+多分支条件编译
+#if(n)def name	加n为取反，判断是否定义name，如果为否,#endif前的代码不参与编译
+#elif name
+#else
+#endif	停止位置
+
+#pragma once	头文件只被包含一次
+#undef name	取消#include定义的宏定义
+#ifndef _COMMON	避免重复定义，开头
+#endif		避免重复定义，结尾
+#pragma pack();	修改结构体默认对齐数
+
+
+宏的使用：
+#include 宏名(变量)	 代码（宏一般不加;符）
+
+
+函数使用
+exit(-1)	结束程序
+int fflush(FILE *stream)  刷新缓冲区
+puts();	输出字符串，会自动换行
+perror("自定义信息开头");		打印错误信息
+fflush (stdin);	清除缓存
+scanf(" %c ", &t);	在%c两边加上空格可以处理无法赋值给变量的问题
+struct 名{};    结构体
+enum 名{};    枚举和结构体使用方法类似
+union 名{};    联合体，联合体共用空间会互相覆盖;
+continue	跳过后边语句回到开头,好像只能在分支和循环语句使用。
+break	用于永久跳出循环
+getchar()	人工输入获取一个字符，也可以用来消除换行符
+scanf	人工输入需要的数据
+sizeof	计算的是变量或类型所占用的内存字节数
+rand()	生成随机数0~RAND_AMX（32767）
+unsigned	表示无符号整型
+signed	表示有符号整型
+const 	把变量变成常量不可修改
+gets();	人工输入需要的字符包括 空格
+static	它被用来控制变量的存储方式和可见性，在局部变量中防止变量被重新初始化
+goto	跳到指定位置
+
+typedef unsigned int 名称;	可以使用它来为类型取一个新的名字
+typedef void (*qq名称)(int);	qq名称 = void(*)(int);
+
+
+#include <stdbool.h>
+bool	true 代表 1，false 代表 0
+
+
+#include <math.h>
+sqrt();	数学库函数，开平方使用
+pow(x,n);	计算x的n次方
+fabs(double x)	double、float 和 long double绝对值函数
+
+
+#include<stddef.h>
+offsetof(a, c) 	a为struct +标签 c为结构体成员变量名;用于计算结构体成员变量起始位置字节数
+
+
+#include <time.h>
+srand((unsigned int) time(NULL))；随机数用法：初始化随机数发生器
+
+
+#include <string.h> 
+strtok(a, b);	字符串切割，a是被切割的字符串，b是切割的位置，第一次切割传a，第二次传NULL
+trstr(a, b);		在字符串 a 中查找第一次出现字符串 b 的位置
+strlen();		计算字符串长度不包括空结束字符，要有\0才停止。
+strcpy(dest，src);	把 src 所指向的字符串拷贝到 dest,要有\0才会停止，\0也会拷贝。
+strcmp() == 0  	用于对比字符窜是否相等，返回值等于0表示相等
+strcat(dest,src);	把 src 所指向的字符串追加到 dest末尾,要有\0才会停止，\0也会拷贝。(最好不要自己给自己追加,可能死循环)
+strncpy(dest,src,num);	把 src 所指向的字符串拷贝到 dest,要有\0才会停止，\0也会拷贝，num是拷贝的字符数。
+strncat(dest,src,num);	把 src 所指向的字符串追加到 dest末尾,要有\0才会停止，\0也会拷贝,num是拷贝的字符数。
+strncmp(dest,src,num); 	用于对比字符窜是否相等，返回值等于0表示相等,num是对比的字符数。
+memcpy(str1, str2, n);	从存储区 str2 复制 n 个字节到存储区 str1,也可以实现重叠拷贝.(任意类型适用)
+memmove(str1, str2, n);	和memcpy用法一样但是主要实现重叠拷贝。(任意类型适用)
+memcmp(str1, str2, n);	用于比较str1和str2前n个字节的大小str1是否><=str2；(任意类型适用)
+memset(ptr, value, n);	用于初始化数据,ptr为目标数组,value为需要初始化的数据,n为初始化的字节数。
+
+
+#include <windows.h>
+Sleep（毫秒）延迟指令
+
+
+#include <stdlib.h>	
+int abs (int x)	整数绝对值函数
+int itoa(const char *str)	把参数 str 所指向的整型转换为一个字符串
+int atoi(const char *str)	把参数 str 所指向的字符串转换为一个整数（类型为 int 型）
+system("cls")  清屏指令
+{
+qsort(void* base,	要排序的数据起始位置
+         size_t num,	待排序的数据的个数
+         size_t width,	待排序元素的大小
+         int(* cmp)(const void* e1,const void* e2));指针函数比较
+}
+srand()    	播种由函数 rand 使用的随机数发生器
+
+动态内存函数(堆区)
+void *malloc(size_t size)	分配所需的内存空间(size)，并返回一个指向它的指针，不会初始化空间。
+void *calloc(size_t nitems, size_t size) 	分配所需的内存空间(size)，nitems -- 要被分配的元素个数。
+				并返回一个指向它的指针,会初始化空间。
+void *realloc(void *ptr, size_t size)	尝试重新调整之前调用 malloc 或 calloc 所分配的 ptr 所指向的内存块的大小。
+void free(void *ptr)		释放之前调用 calloc、malloc 或 realloc 所分配的内存空间，新增的空间不会初始化。
+
+
+#include <assert.h>
+assert();	断言报错,不能为空
+
+
+#include<errno.h>
+strerror(errno);	错误码判断错误
+
+
+打开文件函数使用
+int feof(FILE *stream)	判断是不是到文件末尾结束
+int ferror(FILE *stream)	判断是不是遇到错误结束
+void rewind(FILE *stream)	让指针回到起始位置
+long int ftell(FILE *stream)	返回当前位置的偏移量
+int fseek(FILE *stream, long int offset, int whence)
+   设置流 stream 的文件位置为给定的偏移 offset，参数 offset 意味着从给定的 whence 位置查找的字节数。
+SEEK_SET		文件的开头
+SEEK_CUR	文件指针的当前位置
+SEEK_END	文件的末尾
+
+
+FILE *fopen(const char *dz, const char *mode) 	打开文件，dz为文件的地址，mode为“？”
+int fclose(FILE *stream)	 关闭打开的文件stream
+"r"   (只读)     打开一个用于读取的文件。该文件必须存在。
+"w"  (只写)    创建一个用于写入的空文件。如果文件名称与已存在的文件相同，则会删除已有文件的内容，文件被视为一个新的空文件。
+"a"   (追加）  追加到一个文件。写操作向文件末尾追加数据。(没有文件,建立新的文件)
+"r+" (读写)    打开一个用于更新的文件，可读取也可写入。该文件必须存在。
+"w+"(读写)   创建一个用于读写的空文件。
+"a+" (读写)   打开一个用于读取和追加的文件。
+"rb"  (只读)   打开一个二进制文件用于读取。该文件必须存在。
+"wb"(只写)    为了输出数据，打开一个二进制文件，(没有文件,建立新的文件)
+"ab" (追加)    向一个二进制文件尾添加数据.该文件必须存在。
+"r+" (读写)    为了读和写，打开一个文本文件,该文件必须存在。
+"w+"(读写)    为了读和写，建一个新的文件。(没有文件,建立新的文件)
+"a+" (读写)    打开一个文件，在文件末尾进行读写。(没有文件,建立新的文件)
+"rb+"(读写)   为了读和写打开一个二进制文件。该文件必须存在。
+"wb+"(读写)  为了读和写创建一个二进制文件。
+"ab+"(读写)   打开一个二进制文件，在文件尾进行读写(没有文件,建立新的文件)
+
+
+    功能		函数名	   适用于
+字符输入函数	fgetc	所有输入流  int fgetc(FILE *stream) 遇到EOF才停止
+字符输出函数	fputc	所有输出流  int fputc(int char, FILE *stream) 
+文本行输入函数	fgets	所有输入流  char *fgets(char *str, int 长度, FILE *stream) 遇到NULL才停止
+文本行输出函数	fputs	所有输出流  int fputs(const char *str, FILE *stream)
+格式化输入函数	fscanf	所有输入流  int fscanf(FILE *stream, const char *format, ...) 遇到NULL才停止
+格式化输出函数	fprintf	所有输出流  int fprintf(FILE *stream, const char *format, ...)
+进制输入		fread	     文件	  size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream)
+进制输出		fwrite	     文件	  size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream)
