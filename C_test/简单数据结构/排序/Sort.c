@@ -169,3 +169,91 @@ void  BubbleSort(int* a, int n)//冒泡排序
 		x++;
 	}
 }
+
+int JudgeQuickSort(int* a, int begin, int end)	//找中间数
+{
+	int mid = end/2;
+	if((a[begin] >= a[mid] && a[begin] <= a[end]) || 
+	   (a[begin] <= a[mid] && a[begin] >= a[end]))
+		return begin;
+	
+	else if((a[mid] >= a[begin] && a[mid] <= a[end]) || 
+			(a[mid] <= a[end] && a[mid] >= a[begin]))
+		return mid;
+	
+	else
+		return end;
+}
+
+int PartSort1(int* a, int begin, int end)	//进行左右区分 方法一:左右指针法
+{
+
+	Swap(&a[JudgeQuickSort(a, begin, end)], &a[end]);
+	int secondaryKey  = end;
+	while(begin < end)
+	{
+		while(begin < end && a[begin] <= a[secondaryKey])
+			++begin;
+		
+		
+		while(begin < end && a[end] >= a[secondaryKey])
+			--end;
+		
+		Swap(&a[begin], &a[end]);
+	}
+	Swap(&a[begin], &a[secondaryKey]);
+	return begin;
+}
+
+int PartSort2(int* a, int begin, int end)//进行左右区分 方法二:挖坑法
+{
+	Swap(&a[JudgeQuickSort(a, begin, end)], &a[end]);
+	int secondaryKey  = a[end];
+	while(begin < end)
+	{
+		while(begin < end && a[begin] <= secondaryKey)
+			++begin;
+		
+		a[end] = a[begin];
+		while(begin < end && a[end] >= secondaryKey)
+			--end;
+		a[begin] = a[end];
+	}
+	a[begin] = secondaryKey;
+	return begin;
+}
+
+int PartSort3(int* a, int begin, int end)//进行左右区分 方法三:前后指针法
+{
+	int prev = begin-1;
+	int cur = begin;
+	int secondaryKey  = end;
+	
+	while(cur != end)
+	{
+		if(a[cur] < a[secondaryKey])
+		{
+			
+			Swap(&a[++prev], &a[cur]);
+		}
+		++cur;
+	}
+	Swap(&a[++prev], &a[secondaryKey]);
+	return prev;
+}
+
+void QuickSort(int* a, int left, int right)	//快速排序
+{
+	if(!*a) return ;
+	
+	if(left > right) return ;
+	
+//	int div = PartSort1(a, left, right);//进行左右区分 方法一:左右指针法
+	
+//	int div = PartSort2(a, left, right);//进行左右区分 方法二:挖坑法
+
+	int div = PartSort3(a, left, right);//进行左右区分 方法三:前后指针法
+
+	QuickSort(a, left, div-1);
+	QuickSort(a, left+1, right);
+}

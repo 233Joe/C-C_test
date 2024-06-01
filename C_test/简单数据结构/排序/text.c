@@ -10,37 +10,53 @@ void InsertSortText()
 
 void ShellSortText()
 {
-	int b[] = {5, 2, 3, 1};//{1, 4, 6, 5, 4, 6, 8, 1, 3};
-	ShellSort(b, sizeof(b) / sizeof(int));
-	PrintArr(b, sizeof(b) / sizeof(int));
+	int a[] = {5, 2, 3, 1};//{1, 4, 6, 5, 4, 6, 8, 1, 3};
+	ShellSort(a, sizeof(a) / sizeof(int));
+	PrintArr(a, sizeof(a) / sizeof(int));
 }
 
 void SelectSortText()
 {
-	int c[] = {1, 4, 6, 5, 4, 6, 8, 1, 3, 6};
-	SelectSort(c, sizeof(c) / sizeof(int));
-	PrintArr(c, sizeof(c) / sizeof(int));
+	int a[] = {1, 4, 6, 5, 4, 6, 8, 1, 3, 6};
+	SelectSort(a, sizeof(a) / sizeof(int));
+	PrintArr(a, sizeof(a) / sizeof(int));
 }
 
 void HeapSortText()
 {
-	int d[] = {1, 4, 6, 5, 4, 6, 8, 1, 3, 6};
-	HeapSort(d, sizeof(d) / sizeof(int));
-	PrintArr(d, sizeof(d) / sizeof(int));
+	int a[] = {1, 4, 6, 5, 4, 6, 8, 1, 3, 6};
+	HeapSort(a, sizeof(a) / sizeof(int));
+	PrintArr(a, sizeof(a) / sizeof(int));
 }
 
 void BubbleSortText()
 {
-	int e[] = {11 , 99, 1, 4, 6, 5, 4, 6, 8, 1, 3, 6};
-	BubbleSort(e, sizeof(e) / sizeof(int));
-	PrintArr(e, sizeof(e) / sizeof(int));
+	int a[] = {11 , 99, 1, 4, 6, 5, 4, 6, 8, 1, 3, 6};
+	BubbleSort(a, sizeof(a) / sizeof(int));
+	PrintArr(a, sizeof(a) / sizeof(int));
 }
+
+void QuickSortText()
+{
+	int a[] = {555, 11 , 99, 1, 4, 6, 5, 4, 6, 8, 1, 3, 6, 4, 66, 100};
+	QuickSort(a, 0, sizeof(a) / sizeof(int)-1);
+	PrintArr(a, sizeof(a) / sizeof(int));
+}
+
+
 int main()
 {
-	InsertSortText();
-	ShellSortText();
-	SelectSortText();
-	HeapSortText();
-	BubbleSortText();
+//	InsertSortText();
+//	
+//	ShellSortText();
+//	
+//	SelectSortText();
+//	
+//	HeapSortText();
+//	
+//	BubbleSortText();
+	
+	QuickSortText();
+	
 	return 0;
 }
