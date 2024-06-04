@@ -43,6 +43,19 @@ void QuickSortText()
 	PrintArr(a, sizeof(a) / sizeof(int));
 }
 
+void MergeSortText()
+{
+	int a[] = {555, 11 , 99, 1, 4, 6, 5, 4, 6, 8, 1, 3, 6, 4, 66, 100};
+	MergeSort(a, sizeof(a) / sizeof(int));
+	PrintArr(a, sizeof(a) / sizeof(int));
+}
+
+void MergeSortNonRText()
+{
+	int a[] = {555, 11 , 99, 1, 4, 6, 5, 4, 6, 8, 1, 3, 6, 4, 66, 100};
+	MergeSortNonR(a, sizeof(a) / sizeof(int));
+	PrintArr(a, sizeof(a) / sizeof(int));
+}
 
 int main()
 {
@@ -56,7 +69,11 @@ int main()
 //	
 //	BubbleSortText();
 	
-	QuickSortText();
+//	QuickSortText();
+	
+//	MergeSortText();
+
+	MergeSortNonRText();
 	
 	return 0;
 }
