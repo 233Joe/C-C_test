@@ -170,7 +170,7 @@ void  BubbleSort(int* a, int n)//冒泡排序
 	}
 }
 
-int JudgeQuickSort(int* a, int begin, int end)	//找中间数
+int JudgeQuickSort(int* a, int begin, int end)	//3数找中间数
 {
 	int mid = end/2;
 	if((a[begin] >= a[mid] && a[begin] <= a[end]) || 
