@@ -459,4 +459,40 @@ void MergeSortNonR(int* a, int n)//非递归实现合并排序
 	free(tmp);
 }
 
+void CountSort(int* a, int n)//计数排序
+{
+	if(a == NULL)
+		return ;
+	
+	int max = a[0];
+	int min = a[0];
+	
+	int i = 0;
+	for(i = 0; i < n; i++)
+	{
+		if(max < a[i])
+			max = a[i];
+		
+		if(min > a[i])
+			min = a[i];
+	}
+	
+	int range = max-min+1;
+	int* countArr = (int*)malloc(sizeof(int)*range);
+	memset(countArr, 0, sizeof(int)*range);
 
+	for(i = 0; i < n; i++)
+	{
+		countArr[a[i]-min]++;
+	}
+	
+	int index = 0;
+	for(i = 0; i < range; i++)
+	{
+		while(countArr[i]--)
+		{
+			a[index++] = i+min;
+		}
+	}
+	free(countArr);
+}

@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<malloc.h>
+#include <string.h> 
 
 void PrintArr(int* a, int n);
 
@@ -19,4 +20,7 @@ void QuickSort(int* a, int left, int right);	//快速排序
 void MergeSort(int* a, int n);	//合并排序
 
 void MergeSortNonR(int* a, int n);//非递归实现合并排序
+
+void CountSort(int* a, int n);//计数排序
+
 

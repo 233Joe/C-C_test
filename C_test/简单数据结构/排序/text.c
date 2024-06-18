@@ -57,6 +57,13 @@ void MergeSortNonRText()
 	PrintArr(a, sizeof(a) / sizeof(int));
 }
 
+void CountSortText()//计数排序
+{
+	int a[] = {11 , 9, 1, 4, 6, 5, 4, 6, 8, 1, 3, 6, 4, 6, 10};
+	CountSort(a, sizeof(a) / sizeof(int));
+	PrintArr(a, sizeof(a) / sizeof(int));
+}
+
 int main()
 {
 //	InsertSortText();
@@ -73,7 +80,9 @@ int main()
 	
 //	MergeSortText();
 
-	MergeSortNonRText();
+//	MergeSortNonRText();
 	
+	CountSortText();//计数排序
+
 	return 0;
 }
