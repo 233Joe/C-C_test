@@ -18,16 +18,19 @@ int* addToArrayForm(int* a, int asize, int k, int* returnsz)
 	int len = asize > ksize ? asize : ksize;
 	int* retArr = (int*)malloc(sizeof(int)*len+1);
 	memset(retArr, 0, sizeof(int)*len+1);
-
+	if(retArr == NULL)
+	{
+		printf("内存申请失败");
+		exit(-1);
+	}
 	*returnsz = len;
 	int i = 0;
 	while(len--)
 	{
 		retArr[i] += (knum % 10);
 		if(anum >= 0)
-		{
 			retArr[i] += a[anum--];
-		}
+		
 		knum /= 10;
 		
 		if(retArr[i] > 9)
