@@ -59,7 +59,7 @@ void TestSort()
 {
 	int a[] = {10, 6, 7, 1, 2, 3, 9, 8, 0, 4};
 	int sz = sizeof(a)/sizeof(int);
-	QuickSort(a, 0, sz-1);
+	MergeSortNonR(a, sz);
 	PrintArr(a, sz);
 
 }
@@ -67,7 +67,7 @@ void TestSort()
 
 int main()
 {
-//	TestSort();
-	TestOP();
+	TestSort();
+//	TestOP();
 	return 0;
 }

@@ -24,7 +24,14 @@ void BubbleSort(int*a, int sz);
 int PartSort1(int*a, int begin, int end);
 int PartSort2(int*a, int begin, int end);
 int PartSort3(int*a, int begin, int end);
-
 //快速排序
 void QuickSort(int*a, int left, int right);
+//非递归快排排序
+void QuickSortNonR(int* a, int left, int right);
+
+
+//归并排序递归实现
+void MergeSort(int* a, int sz);
+//非归并排序递归实现
+void MergeSortNonR(int* a, int sz);
 

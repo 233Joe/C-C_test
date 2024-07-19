@@ -1,4 +1,6 @@
 #include "Sort.h"
+#include "Stack.c"
+#include "Stack.h"
 
 //打印数组
 void PrintArr(int* a, int sz)
@@ -107,7 +109,7 @@ void SelectSort(int* a, int sz)//选择排序逆序是最慢的
 }
 
 
-//堆排序
+//堆排序向下调整
 void AdjustDwon(int* a, int sz, int root)//0, 6, 85, 4, 8, 3, 1, 5, 4, 2
 {
 	int parent = root;
@@ -131,7 +133,7 @@ void AdjustDwon(int* a, int sz, int root)//0, 6, 85, 4, 8, 3, 1, 5, 4, 2
 		}
 	}
 }
-
+//堆排序
 void HeapSort(int* a, int sz)
 {
 	assert(a);
@@ -263,3 +265,117 @@ void QuickSort(int*a, int left, int right)
 	QuickSort(a, div+1, right);
 }
 
+//非递归快速排序
+void QuickSortNonR(int* a, int left, int right)
+{
+	assert(a);
+	Stack st;
+	
+	StackInit(&st);
+	
+	StackPush(&st, right);
+	StackPush(&st, left);
+	
+	while(!StackEmpty(&st))
+	{
+		int begin = StackTop(&st);
+		StackPop(&st);
+		int end = StackTop(&st);
+		StackPop(&st);
+		
+		int div = PartSort3(a, begin, end);
+		
+		if(div+1 < end)
+		{
+			StackPush(&st, end);
+			StackPush(&st, div+1);
+		}
+		
+		if(begin < div-1)
+		{
+			StackPush(&st, div-1);
+			StackPush(&st, begin);
+		}
+	}
+	StackDestory(&st);
+}
+
+
+void MergeArr(int* a, int begin1, int end1, int begin2, int end2, int* tmp)
+{
+	int left = begin1;
+	int right = end2;
+	int index = begin1;
+	while(begin1 <= end1 && begin2 <= end2)
+	{
+		if(a[begin1] < a[begin2])
+			tmp[index++] = a[begin1++]; 
+		else
+			tmp[index++] = a[begin2++]; 
+	}
+	
+	while(begin1 <= end1)
+	{
+		tmp[index++] = a[begin1++]; 
+	}
+	
+	while(begin2 <= end2)
+	{
+		tmp[index++] = a[begin2++]; 
+	}
+	
+	int i = 0;
+	for(i = left; i <= right; i++)
+	{
+		a[i] = tmp[i];	
+	}
+}
+void _MergeSort(int* a, int left, int right, int* tmp)
+{
+	if(left >= right)
+		return ;
+	
+	int mid = (left + right) / 2;
+	_MergeSort(a, left, mid, tmp);
+	_MergeSort(a, mid+1, right, tmp);
+	
+	int begin1 = left, end1 = mid;
+	int begin2 = mid+1, end2 = right;
+	MergeArr(a, begin1, end1, begin2, end2, tmp);
+}
+
+//归并排序递归实现
+void MergeSort(int* a, int sz)
+{
+	assert(a);
+	int* tmp = (int*)malloc(sizeof(int) * sz);
+	_MergeSort(a, 0, sz-1, tmp);
+	free(tmp);
+}
+//非归并排序递归实现
+void MergeSortNonR(int* a, int sz)
+{
+	assert(a);
+	int* tmp = (int*)malloc(sizeof(int) * sz);
+	
+	int gap = 1;
+	while(gap < sz)
+	{
+		int i = 0;
+		for(i = 0; i < sz; i += gap*2)
+		{
+			int begin1 = i, end1 = i + gap - 1;
+			int begin2 = i + gap, end2 = i + gap * 2 - 1;
+			
+			if(begin2 >= sz)
+				break;
+			
+			if(end2 >= sz)
+				end2 = sz-1;
+			
+			MergeArr(a, begin1, end1, begin2, end2, tmp);
+		}
+		gap *= 2;
+	}
+	free(tmp);
+}
