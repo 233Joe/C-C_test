@@ -1,0 +1,32 @@
+#include 
+{
+  <iostream>  库是 C++ 标准库中用于输入输出操作的头文件
+}
+
+函数
+{
+  extern "c"  void Func(int a = 0);  按C语言修饰规则，修饰该函数，让C/C++都可以用;
+  cout <<  << endl；为输出函数 自动识别类型 （endl 为换行）
+  cin >> N >> N;  	为输入函数 自动识别类型
+}
+
+引用
+{
+  int a = 1;   int& ra = a;
+  应用必须初始化
+  ra是a的引用，引用也就是别名，a再取了个名称ra
+}
+
+
+
+namespace  ？？	定义命名空间
+	命名空间的内容，可以定义变量，
+	也可以定义函数命名空间可以嵌套
+
+using namespace std;    展开所有        
+	c++库所有东西都放在std命名空间中
+
+using std :: cin; 	展开std里的cin
+
+std :: cin;	展开单个cin
+	
