@@ -47,6 +47,17 @@ public:
 		return false;
 	}
 
+	Date& operator=(const Date& b)
+	{
+		if(this != &b)
+		{
+			_year = b._year;
+			_month = b._month;
+			_day = b._day;
+		}
+		return *this;
+	}
+	
 	bool operator==(const Date& b)
 	{
 		return (_year == b._year) && (_month == b._month) && (_day == b._day);
@@ -103,7 +114,7 @@ public:
 				ret._year--;
 				ret._month = 12;
 			}
-			ret._day = GetMonthDay(ret._year, ret._month) + ret._day;
+			ret._day += GetMonthDay(ret._year, ret._month) + ret._day;
 		}
 		return ret;
 	}
@@ -135,7 +146,7 @@ public:
 				_year--;
 				_month = 12;
 			}
-			_day = GetMonthDay(_year, _month) + _day;
+			_day += GetMonthDay(_year, _month) + _day;
 		}
 		return *this;
 	}
@@ -145,9 +156,23 @@ public:
 		return *this -= 1;
 	}
 	
+	Date operator--(int)
+	{
+		Date tmp(*this);
+		*this -= 1;
+		return tmp;
+	}
+	
 	Date& operator++()
 	{
 		return *this += 1;
+	}
+	
+	Date operator++(int)
+	{
+		Date tmp(*this);
+		*this += 1;
+		return tmp;
 	}
 	
 	int operator-(const Date& b)
@@ -156,7 +181,7 @@ public:
 		unsigned m = _month - b._month;
 		unsigned d = _day - b._day;
 		y *= 365;
-		m *= 30
+		m *= 30;
 	}
 	
 private:
@@ -171,13 +196,16 @@ int main()
 {
 	Date a(2024, 7, 25);
 	Date b(2024, 7, 25);
-	
 	cout << "a < b :" << (a < b) << endl;
 	
 	cout <<  "a > b :" << (a > b) << endl;
 	
-	cout <<  "a == b :" << (a == b) << endl;
+	Date d;
+	d = a = b;
+	d.Print();
 	
+	cout <<  "a == b :" << (a == b) << endl;
+
 	cout <<  "a <= b :" << (a <= b) << endl;
 
 	cout <<  "a >= b :" << (a >= b) << endl;
