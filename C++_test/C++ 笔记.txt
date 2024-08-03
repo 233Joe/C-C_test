@@ -1,14 +1,33 @@
 #include 
 {
+  <iomanip>   允许开发者控制输出格式，如设置小数点后的位数、设置宽度、对齐方式等。
+           {
+	setiosflags(ios::uppercase)  可以设置或重置流的格式标志。
+           }
   <iostream>  库是 C++ 标准库中用于输入输出操作的头文件
+  <bits/stdc++.h> ？？
 }
 
 函数
 {
-  extern "c"  void Func(int a = 0);  按C语言修饰规则，修饰该函数，让C/C++都可以用;
-  cout <<  << endl；为输出函数 自动识别类型 （endl 为换行）
-  cin >> N >> N;  	为输入函数 自动识别类型
+  typeid(变量名).name()
+	输出变量类型
+
+ inline void Swap(int& a, int& b);  (lnline)对编译器只是建议，编译器会自动优化
+	频繁调用函数有需要建立栈帧，有消耗C++用(inline)内联函数解决，C用宏解决
+ 
+ extern "c"  void Func(int a = 0); 
+	按C语言修饰规则，修饰该函数，让C/C++都可以用;
+ 
+ cout <<  << endl；
+	为输出函数 自动识别类型 （endl 为换行）
+ 
+ cin >> N >> N;  	
+	为输入函数 自动识别类型
+
+  friend	友元 在类内声明后可在类外调用类的成员变量
 }
+
 
 引用
 {
@@ -16,6 +35,14 @@
   应用必须初始化
   ra是a的引用，引用也就是别名，a再取了个名称ra
 }
+
+
+推导
+{
+  int a = 0;
+  auto b = a;	auto可以自动推导类型
+}
+
 
 
 
@@ -29,4 +56,5 @@ using namespace std;    展开所有
 using std :: cin; 	展开std里的cin
 
 std :: cin;	展开单个cin
+
 	
