@@ -1,3 +1,4 @@
+
 lscpu	查看cpu信息
 lsmem	查看内存信息
 df -h	查看磁盘使用情况
